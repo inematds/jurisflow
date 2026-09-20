@@ -1,5 +1,11 @@
 # JurisFlow
 
+[![JurisFlow](guia/assets/banner.jpg)](https://inematds.github.io/jurisflow/guia/)
+
+## 📖 Guia de uso
+
+Guia completo (landing + passo a passo): **https://inematds.github.io/jurisflow/guia/**
+
 Sistema de gestão para escritório de advocacia — ERP/CRM jurídico com assistente de IA.
 
 ## Módulos
