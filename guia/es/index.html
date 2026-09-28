@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>JurisFlow — Gestión jurídica con IA</title>
+<meta content="JurisFlow: ERP/CRM para bufete de abogados — clientes, procesos, plazos, finanzas, documentos y asistente jurídico con IA. React 19 + tRPC + Express + MySQL." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  .warn{background:rgba(226,162,59,.09);border:1px solid rgba(226,162,59,.35);border-radius:14px;padding:18px 20px;margin-top:22px}
+  .warn strong{color:var(--amb)}
+  .warn p{color:var(--mut);font-size:.93rem;margin:.5em 0 0}
+  table.tb{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.tb th,table.tb td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.tb th{font-family:Sora;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--amb)}
+  table.tb td:first-child{white-space:nowrap;font-weight:600}
+  table.tb td.mutd{color:var(--mut)}
+  .tblwrap{overflow-x:auto}
+</style>
+<link href="https://inematds.github.io/jurisflow/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/jurisflow/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/jurisflow/guia/es/" hreflang="es" rel="alternate"/></head>
+<body><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../en/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="./" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<nav><div class="wrap">
+<a class="brand" href="#top"><span class="emoji">⚖️</span> JurisFlow</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#oque">Qué es</a>
+<a class="sec" href="#fluxo">Cómo funciona</a>
+<a class="sec" href="#guia">Guía de uso</a>
+<a class="sec" href="#exemplos">Asistente de IA</a>
+<a class="sec" href="#roadmap">Roadmap</a>
+<button aria-label="Cambiar tema" class="tgl" id="themeToggle" title="Cambiar tema">🌙</button>
+<a class="btn" href="https://github.com/inematds/jurisflow" rel="noopener" target="_blank">GitHub</a>
+</div>
+</div></nav>
+<header class="hero" id="top">
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">ERP/CRM jurídico · MVP funcional</span>
+<h1>Todo el bufete en una <span class="amb">solo pantalla</span>.</h1>
+<p class="lead">Clientes, procesos, plazos, audiencias, tareas, finanzas y documentos — con un asistente jurídico de IA dentro del sistema.</p>
+<div class="cta">
+<a class="btn" href="#guia">Comenzar la guía</a>
+<a class="btn ghost" href="https://github.com/inematds/jurisflow" rel="noopener" target="_blank">Ver en GitHub</a>
+</div>
+</div>
+<figure><img alt="JurisFlow — gestión jurídica con IA: clientes, procesos, agenda y plazos, finanzas, documentos y asistente de IA" src="../assets/banner.jpg"/></figure>
+</div>
+</header>
+<section id="oque"><div class="wrap">
+<span class="chip">Qué es</span>
+<h2>Nueve módulos, una base de datos, cero hojas de cálculo</h2>
+<p class="sub">JurisFlow es un sistema de gestión para bufetes de abogados. No es un prototipo de interfaz: tiene frontend, backend, base de datos MySQL, autenticación y un asistente de IA conectado a un LLM.</p>
+<div class="grid g3">
+<div class="card"><h3>📊 Panel que cuadra las cuentas</h3><p>Clientes, procesos activos, plazos del período, audiencias, ingresos, gastos y saldo — calculados a partir de los registros reales, no ingresados a mano.</p></div>
+<div class="card"><h3>⚖️ Proceso con el expediente completo</h3><p>Número CNJ, tribunal, juzgado, jurisdicción, área, fase, posición del cliente, contraparte, valor de la demanda e historial de movimientos.</p></div>
+<div class="card"><h3>🤖 IA dentro del flujo</h3><p>Borrador de escrito, análisis de jurisprudencia, cálculo de plazos, resumen del estado del proceso, notificación extrajudicial y contrato de honorarios.</p></div>
+</div>
+<div class="tblwrap">
+<table class="tb">
+<tr><th>Módulo</th><th>Qué hace</th></tr>
+<tr><td>Panel general</td><td class="mutd">Indicadores de clientes, procesos activos, plazos, audiencias, ingresos, gastos y saldo</td></tr>
+<tr><td>Clientes</td><td class="mutd">Registro de personas físicas/jurídicas, CPF/CNPJ, contactos, dirección, profesión, estado civil, observaciones y estado</td></tr>
+<tr><td>Procesos</td><td class="mutd">Número CNJ, tribunal, juzgado, jurisdicción, área jurídica, fase, contraparte, valor de la demanda y estado</td></tr>
+<tr><td>Estados</td><td class="mutd">Movimientos dentro de los procesos, con indicación de los que son importantes</td></tr>
+<tr><td>Atenciones</td><td class="mutd">Clasificación inicial de nuevos clientes por WhatsApp, presencialmente, por video, teléfono o correo electrónico</td></tr>
+<tr><td>Agenda y plazos</td><td class="mutd">Plazos fatales, audiencias, reuniones, peritajes y diligencias</td></tr>
+<tr><td>Tareas</td><td class="mutd">Gestión interna: prioridad, responsable, plazo y estado</td></tr>
+<tr><td>Finanzas</td><td class="mutd">Ingresos, gastos, honorarios, costas, vencimientos, pagos y flujo financiero</td></tr>
+<tr><td>Documentos</td><td class="mutd">Demandas, contestaciones, recursos, poderes, contratos de honorarios, acuerdos, notificaciones</td></tr>
+<tr><td>Asistente de IA</td><td class="mutd">Generación y análisis de contenido jurídico mediante LLM, con foco en el Derecho brasileño</td></tr>
+</table>
+</div>
+</div></section>
+<section id="fluxo"><div class="wrap">
+<span class="chip">Cómo funciona</span>
+<h2>Del primer contacto al pago de honorarios</h2>
+<p class="sub">El recorrido que sigue un caso dentro del sistema: cada etapa es un módulo y todos comparten el mismo cliente y el mismo proceso.</p>
+<div class="flow">
+<span>Atención</span><span class="arr">→</span>
+<span>Cliente</span><span class="arr">→</span>
+<span>Proceso</span><span class="arr">→</span>
+<span>Estados</span><span class="arr">→</span>
+<span>Plazos y audiencias</span><span class="arr">→</span>
+<span>Tareas</span><span class="arr">→</span>
+<span>Documentos</span><span class="arr">→</span>
+<span>Finanzas</span>
+</div>
+<div class="grid g2" style="margin-top:30px">
+<div class="card">
+<h3>Fases del proceso</h3>
+<p>Cada proceso sigue una secuencia fija, y el panel muestra cuántos están en cada etapa.</p>
+<div class="flow" style="margin-top:14px">
+<span>Inicial</span><span class="arr">→</span>
+<span>Instrucción</span><span class="arr">→</span>
+<span>Decisión</span><span class="arr">→</span>
+<span>Recurso</span><span class="arr">→</span>
+<span>Ejecución</span><span class="arr">→</span>
+<span>Archivado</span>
+</div>
+</div>
+<div class="card">
+<h3>Situación del caso</h3>
+<p>Independientemente de la fase, el proceso tiene un estado de cierre, que se usa en los filtros y los indicadores.</p>
+<div class="flow" style="margin-top:14px">
+<span>Activo</span><span>Suspendido</span><span>En acuerdo</span>
+<span>Ganancia</span><span>Perdido</span><span>Archivado</span>
+</div>
+</div>
+</div>
+<div class="grid g3" style="margin-top:26px">
+<div class="card"><h3>🗄️ Modelo de datos</h3><p>Nueve tablas: <code>users</code>, <code>clients</code>, <code>consultations</code>, <code>lawsuits</code>, <code>lawsuit_movements</code>, <code>calendar_events</code>, <code>tasks</code>, <code>financial_transactions</code>, <code>legal_documents</code>.</p></div>
+<div class="card"><h3>🔗 Todo conectado</h3><p>Un documento apunta al cliente + proceso + abogado. Un movimiento financiero apunta al proceso que lo generó. Nada queda suelto.</p></div>
+<div class="card"><h3>🎨 Claro y oscuro</h3><p>Interfaz adaptable con tema claro/oscuro, construida con React 19, Radix UI y Tailwind.</p></div>
+</div>
+</div></section>
+<section id="pre"><div class="wrap">
+<span class="chip">Requisitos previos</span>
+<h2>Qué debe estar en línea antes</h2>
+<p class="sub">JurisFlow es una aplicación full-stack: ejecuta un servidor Node y necesita un MySQL. No es un sitio estático.</p>
+<div class="grid g3">
+<div class="card"><h3>Node.js 20+ y pnpm</h3><p>El proyecto usa pnpm (hay un <code>pnpm-lock.yaml</code> versionado) y módulos ESM.</p><pre><span class="c"># comprueba las versiones</span>
+<span class="k">node -v</span>
+<span class="k">pnpm -v</span></pre></div>
+<div class="card"><h3>MySQL accesible</h3><p>La base de datos vacía ya sirve: las migraciones de Drizzle crean las nueve tablas.</p><pre><span class="c"># crea la base de datos</span>
+<span class="k">mysql -u root -p -e</span> <span class="s">"CREATE DATABASE jurisflow"</span></pre></div>
+<div class="card"><h3>Clave de un LLM</h3><p>Solo para el Asistente Jurídico. Los otros ocho módulos funcionan sin ella.</p><pre><span class="c"># ve a .env</span>
+<span class="k">BUILT_IN_FORGE_API_URL=</span>
+<span class="k">BUILT_IN_FORGE_API_KEY=</span></pre></div>
+</div>
+</div></section>
+<section id="guia"><div class="wrap">
+<span class="chip">Guía de uso · paso a paso</span>
+<h2>Del clon al sistema en funcionamiento</h2>
+<p class="sub">Cinco pasos. Al final tendrás JurisFlow en el navegador, ya cargado con datos de demostración.</p>
+<div class="step"><div class="b">1</div><div>
+<h3>Clona el repositorio</h3>
+<p>Todo el código —frontend, backend, migrations y pruebas— está en un solo repo.</p>
+<pre><span class="k">git clone https://github.com/inematds/jurisflow.git</span>
+<span class="k">cd jurisflow</span></pre>
+</div></div>
+<div class="step"><div class="b">2</div><div>
+<h3>Instala las dependencias</h3>
+<p>Usa pnpm: el lockfile es suyo y hay un patch aplicado en <code>wouter</code> que npm ignora.</p>
+<pre><span class="k">pnpm install</span>  <span class="c"># instala front + back de una sola vez</span></pre>
+</div></div>
+<div class="step"><div class="b">3</div><div>
+<h3>Configura el entorno</h3>
+<p>Copia el ejemplo y complétalo. <code>DATABASE_URL</code> e <code>JWT_SECRET</code> son obligatorios; las claves del LLM solo si vas a usar el asistente.</p>
+<pre><span class="k">cp .env.example .env</span>
+
+<span class="c"># .env — lo mínimo para poner en marcha</span>
+<span class="k">DATABASE_URL=</span><span class="s">mysql://usuario:senha@localhost:3306/jurisflow</span>
+<span class="k">JWT_SECRET=</span><span class="s">um-segredo-aleatorio-e-longo</span>
+<span class="k">PORT=</span><span class="s">3000</span></pre>
+</div></div>
+<div class="step"><div class="b">4</div><div>
+<h3>Crea las tablas</h3>
+<p>Drizzle genera las migrations a partir del schema y las aplica en la base de datos. Es el mismo comando en ambas etapas.</p>
+<pre><span class="k">pnpm db:push</span>  <span class="c"># drizzle-kit generate &amp;&amp; drizzle-kit migrate</span></pre>
+</div></div>
+<div class="step"><div class="b">5</div><div>
+<h3>Inicia el servidor</h3>
+<p>Un solo proceso sirve a la API y al frontend. Abre la dirección, inicia sesión y haz clic en <strong>“Generar datos de ejemplo”</strong> en el menú para cargar clientes, procesos, audiencias, tareas, finanzas y documentos.</p>
+<pre><span class="k">pnpm dev</span>  <span class="c"># http://localhost:3000</span></pre>
+</div></div>
+<div class="grid g4" style="margin-top:34px">
+<div class="card"><h3>Otros comandos</h3><p><code>pnpm build</code> — compila front y back<br/><code>pnpm start</code> — ejecuta la build de producción</p></div>
+<div class="card"><h3>Calidad</h3><p><code>pnpm check</code> — verificación de tipos de TypeScript<br/><code>pnpm test</code> — suite de Vitest</p></div>
+<div class="card"><h3>Formato</h3><p><code>pnpm format</code> — Prettier en todo, con las reglas del repo.</p></div>
+<div class="card"><h3>Demo comercial</h3><p>Base de datos vacía + “Generar datos de ejemplo” = despacho ficticio listo para presentar en minutos.</p></div>
+</div>
+</div></section>
+<section id="exemplos"><div class="wrap">
+<span class="chip">Asistente Jurídico de IA</span>
+<h2>Seis operaciones, todas en Derecho brasileño</h2>
+<p class="sub">El asistente está configurado para trabajar con CPC, CPP, CLT, Constitución Federal, Código Civil, CDC y la jurisprudencia del STF, STJ y TST. Tú eliges la operación y describes el caso en texto corrido en portugués.</p>
+<div class="grid g3">
+<div class="card"><h3>📝 Borrador de escrito judicial</h3><p>Se describe el caso; devuelve la estructura del escrito con fundamentos y peticiones.</p></div>
+<div class="card"><h3>🔍 Análisis de jurisprudencia</h3><p>Investiga el criterio de los tribunales sobre el tema y cómo se aplica al caso.</p></div>
+<div class="card"><h3>📅 Cálculo de plazos</h3><p>Cómputo a partir de la notificación, considerando la regla procesal aplicable.</p></div>
+<div class="card"><h3>📄 Resumen del avance</h3><p>Traduce el despacho o el movimiento procesal a un lenguaje claro para el cliente.</p></div>
+<div class="card"><h3>📬 Notificación extrajudicial</h3><p>Redacta la notificación a partir del hecho y la pretensión informados.</p></div>
+<div class="card"><h3>🤝 Contrato de honorarios</h3><p>Prepara el contrato con el objeto, la forma de cobro y las cláusulas habituales.</p></div>
+</div>
+<h3 style="margin-top:38px;font-size:1.1rem">Dos ejemplos reales de entrada</h3>
+<div class="grid g2" style="margin-top:14px">
+<div class="card">
+<p style="margin-bottom:10px"><strong>Borrador de escrito</strong> — reclamación laboral</p>
+<pre>Cliente trabalhou como analista de logística,
+fazia duas horas extras diárias e foi demitido
+sem receber aviso prévio.</pre>
+</div>
+<div class="card">
+<p style="margin-bottom:10px"><strong>Análisis de jurisprudencia</strong> — consumidor</p>
+<pre>Jurisprudência do STJ sobre dano moral
+em caso bancário — Tema 1061.</pre>
+</div>
+</div>
+<div class="warn">
+<strong>⚠️ Verifica todas las citas antes de usarlas.</strong>
+<p>El asistente todavía <em>no</em> está conectado a una base jurídica de verificación. Se le instruye para citar artículos de ley y jurisprudencia, pero un LLM por sí solo puede producir referencias incorrectas. Trata el resultado como un borrador: toda ley y todo precedente citado deben verificarse en la fuente antes de incorporarse al expediente.</p>
+</div>
+</div></section>
+<section id="roadmap"><div class="wrap">
+<span class="chip">Roadmap</span>
+<h2>Dónde está y adónde va</h2>
+<p class="sub">JurisFlow es hoy un MVP funcional de ERP/CRM jurídico con asistente de IA. Lo que sigue es la integración con el mundo exterior y, a futuro, delegar el trabajo repetitivo a agentes.</p>
+<div class="phase"><div class="tag">Hoy</div><div class="d"><strong>ERP/CRM jurídico + asistente de IA</strong><span>Nueve módulos funcionando sobre MySQL, autenticación OAuth + JWT, modo de demostración con un clic y el asistente cubriendo seis operaciones.</span></div></div>
+<div class="phase"><div class="tag">Siguiente</div><div class="d"><strong>Fuentes verificadas y documentos listos</strong><span>Investigación + citas + validación de fuentes jurídicas en el asistente; generación directa de DOCX/PDF de los escritos; RAG sobre los documentos del propio despacho.</span></div></div>
+<div class="phase"><div class="tag">Integraciones</div><div class="d"><strong>El sistema hablando con el exterior</strong><span>Captura automática de movimientos del CNJ, publicaciones del Diario Oficial, WhatsApp, Gmail, Google Calendar, OCR de documentos, firma digital y cobros por PIX/boleto.</span></div></div>
+<div class="phase"><div class="tag">Escala</div><div class="d"><strong>Operación de un despacho grande</strong><span>Permisos avanzados por equipo, auditoría detallada, varias empresas y oficinas, y automatización de los plazos procesales.</span></div></div>
+<div class="phase"><div class="tag">Horizonte</div><div class="d"><strong>JurisFlow Agentic</strong><span>Dejar de ser solo un software para despachos y convertirse en su sistema operativo: agentes de clasificación, área jurídica, procesos, plazos, documentos y finanzas trabajando en cadena — con el abogado como supervisor que aprueba.</span></div></div>
+</div></section>
+<footer>
+<div class="wrap">
+<div class="pill">React 19</div><div class="pill">TypeScript</div><div class="pill">Vite</div><div class="pill">Tailwind</div><div class="pill">Radix UI</div><div class="pill">TanStack Query</div><div class="pill">tRPC</div><div class="pill">Express</div><div class="pill">Zod</div><div class="pill">Drizzle ORM</div><div class="pill">MySQL</div><div class="pill">OAuth + JWT</div>
+<p style="margin-top:18px">JurisFlow · MVP funcional, licencia MIT ·
+      <a href="https://github.com/inematds/jurisflow">inematds/jurisflow</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+  (function(){
+    var KEY='jurisflow-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

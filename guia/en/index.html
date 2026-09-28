@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>JurisFlow — AI-powered legal management</title>
+<meta content="JurisFlow: ERP/CRM for law firms — clients, cases, deadlines, finance, documents, and AI legal assistant. React 19 + tRPC + Express + MySQL." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
+    --txt:#e9e9ee; --mut:#9a9aa6; --amb:#E2A23B; --amb2:#f0c070; --sky:#38bdf8; --pro:#cbd5e1;
+    color-scheme:dark;
+  }
+  body.light{
+    --bg:#f6f7f9; --bg2:#eceef2; --card:#ffffff; --line:#e1e3ea;
+    --txt:#1a1a22; --mut:#5b5b68; --amb:#b9791d; --amb2:#a16207; --sky:#0369a1; --pro:#b45309;
+    color-scheme:light;
+  }
+  body.light .hero .glow{opacity:.5}
+  body.light pre{background:#0e0e14;color:#d6d6e0}
+  body.light pre .c{color:#8a8a98}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--txt);font:16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:Sora,sans-serif;line-height:1.15;margin:0}
+  a{color:var(--amb);text-decoration:none}
+  code,pre{font-family:"JetBrains Mono",monospace}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 22px}
+  .mut{color:var(--mut)} .amb{color:var(--amb)}
+  .chip{display:inline-block;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--amb);font-weight:600;font-family:Sora}
+  nav{position:sticky;top:0;z-index:30;backdrop-filter:blur(12px);background:rgba(12,12,16,.78);border-bottom:1px solid var(--line)}
+  nav .wrap{display:flex;align-items:center;gap:22px;height:60px}
+  nav .brand{display:flex;align-items:center;gap:8px;font-family:Sora;font-weight:800;letter-spacing:-.02em;color:var(--amb)}
+  nav .brand .emoji{font-size:1.25rem}
+  nav .sep{color:var(--mut);opacity:.45}
+  nav .inema{color:var(--sky);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .inema:hover{filter:brightness(1.15)}
+  nav .pro{color:var(--pro);font-weight:600;font-size:.88rem;font-family:Sora}
+  nav .pro:hover{filter:brightness(1.15)}
+  nav .clubpro{display:inline-flex;align-items:center;gap:6px}
+  nav .links{margin-left:auto;display:flex;align-items:center;gap:20px;font-size:.92rem}
+  nav .links a.sec{color:var(--mut)} nav .links a.sec:hover{color:var(--txt)}
+  .tgl{background:var(--bg2);border:1px solid var(--line);color:var(--txt);width:38px;height:38px;border-radius:10px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;font-size:1.05rem}
+  .tgl:hover{border-color:var(--amb)}
+  .btn{display:inline-block;background:var(--amb);color:#1a1206;font-weight:600;padding:.6em 1.05em;border-radius:10px;font-family:Sora}
+  .btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+  @media(max-width:760px){nav .links a.sec{display:none}}
+  .hero{position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+  .hero .glow{position:absolute;inset:-40% -20% auto auto;width:70%;height:600px;background:radial-gradient(closest-side,rgba(226,162,59,.22),transparent 70%);pointer-events:none}
+  .hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;padding:74px 22px}
+  .hero h1{font-size:clamp(2.2rem,5vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+  .hero p.lead{font-size:1.18rem;color:var(--mut);margin:1.1em 0 1.6em;max-width:34ch}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .hero figure{margin:0;border-radius:16px;overflow:hidden;border:1px solid var(--line);box-shadow:0 30px 80px -30px #000}
+  .hero figure img{width:100%;display:block}
+  @media(max-width:780px){.hero .wrap{grid-template-columns:1fr;padding:48px 22px}}
+  section{padding:62px 0;border-bottom:1px solid var(--line)}
+  section h2{font-size:clamp(1.5rem,3.4vw,2.1rem);font-weight:800;letter-spacing:-.02em}
+  section .sub{color:var(--mut);margin:.6em 0 2em;max-width:62ch}
+  .grid{display:grid;gap:16px}
+  .g3{grid-template-columns:repeat(3,1fr)} .g4{grid-template-columns:repeat(4,1fr)} .g2{grid-template-columns:repeat(2,1fr)}
+  @media(max-width:820px){.g3,.g4{grid-template-columns:1fr 1fr}}
+  @media(max-width:540px){.g2,.g3,.g4{grid-template-columns:1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+  .card h3{font-size:1.05rem;margin-bottom:.4em}
+  .card p{color:var(--mut);font-size:.92rem;margin:0}
+  .num{display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;border-radius:8px;background:rgba(226,162,59,.14);color:var(--amb);font-family:Sora;font-weight:800;font-size:.9rem;margin-bottom:.7em}
+  .flow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px}
+  .flow span{background:var(--bg2);border:1px solid var(--line);border-radius:999px;padding:.45em .9em;font-size:.85rem;font-family:Sora;font-weight:600}
+  .flow .arr{color:var(--amb);border:none;background:none;padding:0 .1em}
+  pre{background:#0a0a0e;border:1px solid var(--line);border-radius:12px;padding:16px 18px;overflow:auto;font-size:.86rem;line-height:1.6;color:#d6d6e0}
+  pre .c{color:#6f6f7c} pre .k{color:var(--amb2)} pre .s{color:#9ece6a}
+  .step{display:grid;grid-template-columns:46px 1fr;gap:16px;margin-bottom:26px}
+  .step .b{width:46px;height:46px;border-radius:12px;background:var(--amb);color:#1a1206;font-family:Sora;font-weight:800;font-size:1.25rem;display:flex;align-items:center;justify-content:center}
+  .step h3{font-size:1.12rem;margin-bottom:.3em}
+  .step p{color:var(--mut);margin:.2em 0 .7em}
+  .ex{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:680px){.ex{grid-template-columns:1fr}}
+  .ex figure{margin:0;border-radius:14px;overflow:hidden;border:1px solid var(--line)}
+  .ex figure img{width:100%;display:block}
+  .ex figcaption{padding:12px 14px;font-size:.88rem;color:var(--mut);background:var(--card)}
+  .phase{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line)}
+  .phase:last-child{border:none}
+  .phase .tag{flex:0 0 92px;font-family:Sora;font-weight:800;color:var(--amb)}
+  .phase .d strong{display:block;margin-bottom:.2em}
+  .phase .d span{color:var(--mut);font-size:.92rem}
+  footer{padding:46px 0;text-align:center;color:var(--mut);font-size:.9rem}
+  .pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:.3em .8em;font-size:.78rem;color:var(--mut);margin:0 4px}
+  .warn{background:rgba(226,162,59,.09);border:1px solid rgba(226,162,59,.35);border-radius:14px;padding:18px 20px;margin-top:22px}
+  .warn strong{color:var(--amb)}
+  .warn p{color:var(--mut);font-size:.93rem;margin:.5em 0 0}
+  table.tb{width:100%;border-collapse:collapse;font-size:.92rem;margin-top:10px}
+  table.tb th,table.tb td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  table.tb th{font-family:Sora;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;color:var(--amb)}
+  table.tb td:first-child{white-space:nowrap;font-weight:600}
+  table.tb td.mutd{color:var(--mut)}
+  .tblwrap{overflow-x:auto}
+</style>
+<link href="https://inematds.github.io/jurisflow/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/jurisflow/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/jurisflow/guia/es/" hreflang="es" rel="alternate"/></head>
+<body><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="./" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../es/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<nav><div class="wrap">
+<a class="brand" href="#top"><span class="emoji">⚖️</span> JurisFlow</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#oque">What it is</a>
+<a class="sec" href="#fluxo">How it works</a>
+<a class="sec" href="#guia">User guide</a>
+<a class="sec" href="#exemplos">AI Assistant</a>
+<a class="sec" href="#roadmap">Roadmap</a>
+<button aria-label="Toggle theme" class="tgl" id="themeToggle" title="Toggle theme">🌙</button>
+<a class="btn" href="https://github.com/inematds/jurisflow" rel="noopener" target="_blank">GitHub</a>
+</div>
+</div></nav>
+<header class="hero" id="top">
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">Legal ERP/CRM · Functional MVP</span>
+<h1>The entire firm in one <span class="amb">single screen</span>.</h1>
+<p class="lead">Clients, cases, deadlines, hearings, tasks, finances, and documents — with an AI legal assistant built into the system.</p>
+<div class="cta">
+<a class="btn" href="#guia">Start the guide</a>
+<a class="btn ghost" href="https://github.com/inematds/jurisflow" rel="noopener" target="_blank">View on GitHub</a>
+</div>
+</div>
+<figure><img alt="JurisFlow — AI-powered legal management: clients, cases, calendar and deadlines, finance, documents, and AI assistant" src="../assets/banner.jpg"/></figure>
+</div>
+</header>
+<section id="oque"><div class="wrap">
+<span class="chip">What it is</span>
+<h2>Nine modules, one database, zero spreadsheets</h2>
+<p class="sub">JurisFlow is a management system for law firms. It’s not a UI prototype: it has a frontend, backend, MySQL database, authentication, and an AI assistant connected to an LLM.</p>
+<div class="grid g3">
+<div class="card"><h3>📊 Dashboard that balances the books</h3><p>Clients, active cases, deadlines for the period, hearings, revenue, expenses, and balance — calculated from actual entries, not typed in by hand.</p></div>
+<div class="card"><h3>⚖️ Case with the complete file</h3><p>CNJ number, court, court division, county, area, stage, client position, opposing party, case value, and activity history.</p></div>
+<div class="card"><h3>🤖 AI built into the workflow</h3><p>Draft petition, case law analysis, deadline calculation, case update summary, extrajudicial notice, and fee agreement.</p></div>
+</div>
+<div class="tblwrap">
+<table class="tb">
+<tr><th>Module</th><th>What it does</th></tr>
+<tr><td>Overview Dashboard</td><td class="mutd">Metrics for clients, active cases, deadlines, hearings, revenue, expenses, and balance</td></tr>
+<tr><td>Clients</td><td class="mutd">Individual/business registration, CPF/CNPJ, contacts, address, profession, marital status, notes, and status</td></tr>
+<tr><td>Cases</td><td class="mutd">CNJ number, court, court division, county, legal area, stage, opposing party, case value, and status</td></tr>
+<tr><td>Case Progress</td><td class="mutd">Case activity, with important items flagged</td></tr>
+<tr><td>Client Services</td><td class="mutd">Triage of new clients via WhatsApp, in person, by video, phone, or email</td></tr>
+<tr><td>Deadlines &amp; Schedule</td><td class="mutd">Critical deadlines, hearings, meetings, expert examinations, and due diligence</td></tr>
+<tr><td>Tasks</td><td class="mutd">Internal management: priority, owner, deadline, and status</td></tr>
+<tr><td>Finance</td><td class="mutd">Revenue, expenses, fees, court costs, due dates, payments, and cash flow</td></tr>
+<tr><td>Documents</td><td class="mutd">Petitions, answers, appeals, powers of attorney, fee agreements, settlements, notices</td></tr>
+<tr><td>AI Assistant</td><td class="mutd">Generation and analysis of legal content via LLM, focused on Brazilian law</td></tr>
+</table>
+</div>
+</div></section>
+<section id="fluxo"><div class="wrap">
+<span class="chip">How it works</span>
+<h2>From first contact to fee paid</h2>
+<p class="sub">The path a case takes through the system — each stage is a module, and they all share the same client and case.</p>
+<div class="flow">
+<span>Client Service</span><span class="arr">→</span>
+<span>Client</span><span class="arr">→</span>
+<span>Case</span><span class="arr">→</span>
+<span>Case Progress</span><span class="arr">→</span>
+<span>Deadlines &amp; Hearings</span><span class="arr">→</span>
+<span>Tasks</span><span class="arr">→</span>
+<span>Documents</span><span class="arr">→</span>
+<span>Finance</span>
+</div>
+<div class="grid g2" style="margin-top:30px">
+<div class="card">
+<h3>Process stages</h3>
+<p>Each case moves through a fixed sequence, and the dashboard shows how many are at each stage.</p>
+<div class="flow" style="margin-top:14px">
+<span>Initial</span><span class="arr">→</span>
+<span>Instruction</span><span class="arr">→</span>
+<span>Decision</span><span class="arr">→</span>
+<span>Appeal</span><span class="arr">→</span>
+<span>Enforcement</span><span class="arr">→</span>
+<span>Archived</span>
+</div>
+</div>
+<div class="card">
+<h3>Case status</h3>
+<p>Regardless of the stage, each case has an outcome status used in filters and metrics.</p>
+<div class="flow" style="margin-top:14px">
+<span>Active</span><span>Suspended</span><span>Settled</span>
+<span>Gain</span><span>Lost</span><span>Archived</span>
+</div>
+</div>
+</div>
+<div class="grid g3" style="margin-top:26px">
+<div class="card"><h3>🗄️ Data model</h3><p>Nine tables: <code>users</code>, <code>clients</code>, <code>consultations</code>, <code>lawsuits</code>, <code>lawsuit_movements</code>, <code>calendar_events</code>, <code>tasks</code>, <code>financial_transactions</code>, <code>legal_documents</code>.</p></div>
+<div class="card"><h3>🔗 Everything connected</h3><p>A document links to a client + case + attorney. A financial transaction links to the case that generated it. Nothing is left unlinked.</p></div>
+<div class="card"><h3>🎨 Light and dark</h3><p>Responsive interface with light/dark theme, built with React 19, Radix UI, and Tailwind.</p></div>
+</div>
+</div></section>
+<section id="pre"><div class="wrap">
+<span class="chip">Prerequisites</span>
+<h2>What needs to be up and running first</h2>
+<p class="sub">JurisFlow is a full-stack application: it runs a Node server and requires MySQL. It’s not a static site.</p>
+<div class="grid g3">
+<div class="card"><h3>Node.js 20+ and pnpm</h3><p>The project uses pnpm (there’s a <code>pnpm-lock.yaml</code> version-controlled) and ESM modules.</p><pre><span class="c"># check the versions</span>
+<span class="k">node -v</span>
+<span class="k">pnpm -v</span></pre></div>
+<div class="card"><h3>Accessible MySQL</h3><p>An empty database is all you need — Drizzle migrations create the nine tables.</p><pre><span class="c"># create the database</span>
+<span class="k">mysql -u root -p -e</span> <span class="s">"CREATE DATABASE jurisflow"</span></pre></div>
+<div class="card"><h3>An LLM key</h3><p>Only for the Legal Assistant. The other eight modules work without it.</p><pre><span class="c"># open .env</span>
+<span class="k">BUILT_IN_FORGE_API_URL=</span>
+<span class="k">BUILT_IN_FORGE_API_KEY=</span></pre></div>
+</div>
+</div></section>
+<section id="guia"><div class="wrap">
+<span class="chip">User guide · step by step</span>
+<h2>From clone to running system</h2>
+<p class="sub">Five steps. At the end, JurisFlow is running in your browser, populated with demo data.</p>
+<div class="step"><div class="b">1</div><div>
+<h3>Clone the repository</h3>
+<p>All the code — frontend, backend, migrations, and tests — lives in a single repo.</p>
+<pre><span class="k">git clone https://github.com/inematds/jurisflow.git</span>
+<span class="k">cd jurisflow</span></pre>
+</div></div>
+<div class="step"><div class="b">2</div><div>
+<h3>Install the dependencies</h3>
+<p>Use pnpm: it owns the lockfile, and a patch is applied to <code>wouter</code> which npm ignores.</p>
+<pre><span class="k">pnpm install</span>  <span class="c"># install front end + back end all at once</span></pre>
+</div></div>
+<div class="step"><div class="b">3</div><div>
+<h3>Configure the environment</h3>
+<p>Copy the example and fill it in. <code>DATABASE_URL</code> e <code>JWT_SECRET</code> are required; LLM keys are needed only if you’re going to use the assistant.</p>
+<pre><span class="k">cp .env.example .env</span>
+
+<span class="c"># .env — the minimum to get it running</span>
+<span class="k">DATABASE_URL=</span><span class="s">mysql://usuario:senha@localhost:3306/jurisflow</span>
+<span class="k">JWT_SECRET=</span><span class="s">um-segredo-aleatorio-e-longo</span>
+<span class="k">PORT=</span><span class="s">3000</span></pre>
+</div></div>
+<div class="step"><div class="b">4</div><div>
+<h3>Create the tables</h3>
+<p>Drizzle generates migrations from the schema and applies them to the database. It’s the same command in both steps.</p>
+<pre><span class="k">pnpm db:push</span>  <span class="c"># drizzle-kit generate &amp;&amp; drizzle-kit migrate</span></pre>
+</div></div>
+<div class="step"><div class="b">5</div><div>
+<h3>Start the server</h3>
+<p>One process serves both the API and the frontend. Open the address, log in, and click <strong>“Generate Sample Data”</strong> in the menu to populate clients, cases, hearings, tasks, finances, and documents.</p>
+<pre><span class="k">pnpm dev</span>  <span class="c"># http://localhost:3000</span></pre>
+</div></div>
+<div class="grid g4" style="margin-top:34px">
+<div class="card"><h3>Other commands</h3><p><code>pnpm build</code> — builds the front end and back end<br/><code>pnpm start</code> — runs the production build</p></div>
+<div class="card"><h3>Quality</h3><p><code>pnpm check</code> — TypeScript type check<br/><code>pnpm test</code> — Vitest suite</p></div>
+<div class="card"><h3>Formatting</h3><p><code>pnpm format</code> — Prettier across the board, using the repo’s rules.</p></div>
+<div class="card"><h3>Sales Demo</h3><p>Empty database + “Generate Sample Data” = a fictional law firm ready to present in minutes.</p></div>
+</div>
+</div></section>
+<section id="exemplos"><div class="wrap">
+<span class="chip">AI Legal Assistant</span>
+<h2>Six operations, all under Brazilian law</h2>
+<p class="sub">The assistant is instructed to work with the CPC, CPP, CLT, Federal Constitution, Civil Code, CDC, and case law from the STF, STJ, and TST. You choose the operation and describe the case in plain Portuguese.</p>
+<div class="grid g3">
+<div class="card"><h3>📝 Draft petition</h3><p>Describe the case; it returns the document structure with legal grounds and requested relief.</p></div>
+<div class="card"><h3>🔍 Case law analysis</h3><p>Surveys how the courts have ruled on the issue and how it applies to the case.</p></div>
+<div class="card"><h3>📅 Deadline calculation</h3><p>Counted from the notice of service, according to the applicable procedural rule.</p></div>
+<div class="card"><h3>📄 Progress summary</h3><p>Turns the court order or case update into plain language for the client.</p></div>
+<div class="card"><h3>📬 Extrajudicial notice</h3><p>Drafts the notice based on the facts and relief requested that you provide.</p></div>
+<div class="card"><h3>🤝 Attorney fee agreement</h3><p>Builds the agreement with its scope, billing method, and standard clauses.</p></div>
+</div>
+<h3 style="margin-top:38px;font-size:1.1rem">Two real-world input examples</h3>
+<div class="grid g2" style="margin-top:14px">
+<div class="card">
+<p style="margin-bottom:10px"><strong>Draft petition</strong> — employment lawsuit</p>
+<pre>Cliente trabalhou como analista de logística,
+fazia duas horas extras diárias e foi demitido
+sem receber aviso prévio.</pre>
+</div>
+<div class="card">
+<p style="margin-bottom:10px"><strong>Case Law Analysis</strong> — consumer</p>
+<pre>Jurisprudência do STJ sobre dano moral
+em caso bancário — Tema 1061.</pre>
+</div>
+</div>
+<div class="warn">
+<strong>⚠️ Check every citation before using it.</strong>
+<p>The assistant still <em>no</em> is connected to a legal database for verification. It is instructed to cite statutes and case law, but an LLM alone can produce incorrect references. Treat the output as a draft: every cited law and precedent must be checked against the source before being filed with the court.</p>
+</div>
+</div></section>
+<section id="roadmap"><div class="wrap">
+<span class="chip">Roadmap</span>
+<h2>Where it is and where it’s headed</h2>
+<p class="sub">JurisFlow is currently a functional MVP for legal ERP/CRM with an AI assistant. Next comes integration with the outside world — and, on the horizon, delegating repetitive work to agents.</p>
+<div class="phase"><div class="tag">Today</div><div class="d"><strong>Legal ERP/CRM + AI assistant</strong><span>Nine working modules on MySQL, OAuth + JWT authentication, one-click demo mode, and an assistant covering six operations.</span></div></div>
+<div class="phase"><div class="tag">Next</div><div class="d"><strong>Verified sources and ready-to-use documents</strong><span>Research + citations + validation of legal sources in the assistant; direct DOCX/PDF generation of legal filings; RAG over the firm’s own documents.</span></div></div>
+<div class="phase"><div class="tag">Integrations</div><div class="d"><strong>The system communicating with the outside world</strong><span>Automatic capture of CNJ case updates, Official Gazette publications, WhatsApp, Gmail, Google Calendar, document OCR, digital signatures, and PIX/boleto payments.</span></div></div>
+<div class="phase"><div class="tag">Scale</div><div class="d"><strong>Large law firm operations</strong><span>Advanced team permissions, detailed auditing, multi-company/multi-office support, and automation of procedural deadlines.</span></div></div>
+<div class="phase"><div class="tag">Horizon</div><div class="d"><strong>JurisFlow Agentic</strong><span>Go from being just office software to becoming its operating system: triage, legal, case management, deadlines, documents, and finance agents working in sequence — with the attorney as the approving supervisor.</span></div></div>
+</div></section>
+<footer>
+<div class="wrap">
+<div class="pill">React 19</div><div class="pill">TypeScript</div><div class="pill">Vite</div><div class="pill">Tailwind</div><div class="pill">Radix UI</div><div class="pill">TanStack Query</div><div class="pill">tRPC</div><div class="pill">Express</div><div class="pill">Zod</div><div class="pill">Drizzle ORM</div><div class="pill">MySQL</div><div class="pill">OAuth + JWT</div>
+<p style="margin-top:18px">JurisFlow · functional MVP, MIT License ·
+      <a href="https://github.com/inematds/jurisflow">inematds/jurisflow</a> ·
+      <a href="https://inema.club">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+  (function(){
+    var KEY='jurisflow-theme';
+    var b=document.body, t=document.getElementById('themeToggle');
+    if(localStorage.getItem(KEY)==='light'){ b.classList.add('light'); t.textContent='☀️'; }
+    t.addEventListener('click',function(){
+      var light=b.classList.toggle('light');
+      t.textContent=light?'☀️':'🌙';
+      localStorage.setItem(KEY, light?'light':'dark');
+    });
+  })();
+</script>
+</body>
+</html>

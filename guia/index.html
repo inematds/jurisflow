@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>JurisFlow — Gestão jurídica com IA</title>
-<meta name="description" content="JurisFlow: ERP/CRM para escritório de advocacia — clientes, processos, prazos, financeiro, documentos e assistente jurídico com IA. React 19 + tRPC + Express + MySQL.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<meta content="JurisFlow: ERP/CRM para escritório de advocacia — clientes, processos, prazos, financeiro, documentos e assistente jurídico com IA. React 19 + tRPC + Express + MySQL." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap" rel="stylesheet"/>
 <style>
   :root{
     --bg:#0c0c10; --bg2:#14141b; --card:#16161e; --line:#272730;
@@ -99,241 +100,214 @@
   table.tb td.mutd{color:var(--mut)}
   .tblwrap{overflow-x:auto}
 </style>
-</head>
-<body>
-
+<link href="https://inematds.github.io/jurisflow/guia/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/jurisflow/guia/en/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/jurisflow/guia/es/" hreflang="es" rel="alternate"/></head>
+<body><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="./" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">PT</a><a href="en/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="es/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
 <nav><div class="wrap">
-  <a class="brand" href="#top"><span class="emoji">⚖️</span> JurisFlow</a>
-  <span class="sep">|</span>
-  <span class="clubpro">
-    <a class="inema" href="https://inema.club" target="_blank" rel="noopener">INEMA.CLUB</a>
-    <span class="sep">-</span>
-    <a class="pro" href="https://inema.pro" target="_blank" rel="noopener">PRO</a>
-  </span>
-  <div class="links">
-    <a class="sec" href="#oque">O que é</a>
-    <a class="sec" href="#fluxo">Como funciona</a>
-    <a class="sec" href="#guia">Guia de uso</a>
-    <a class="sec" href="#exemplos">Assistente IA</a>
-    <a class="sec" href="#roadmap">Roadmap</a>
-    <button class="tgl" id="themeToggle" aria-label="Alternar tema" title="Alternar tema">🌙</button>
-    <a class="btn" href="https://github.com/inematds/jurisflow" target="_blank" rel="noopener">GitHub</a>
-  </div>
+<a class="brand" href="#top"><span class="emoji">⚖️</span> JurisFlow</a>
+<span class="sep">|</span>
+<span class="clubpro">
+<a class="inema" href="https://inema.club" rel="noopener" target="_blank">INEMA.CLUB</a>
+<span class="sep">-</span>
+<a class="pro" href="https://inema.pro" rel="noopener" target="_blank">PRO</a>
+</span>
+<div class="links">
+<a class="sec" href="#oque">O que é</a>
+<a class="sec" href="#fluxo">Como funciona</a>
+<a class="sec" href="#guia">Guia de uso</a>
+<a class="sec" href="#exemplos">Assistente IA</a>
+<a class="sec" href="#roadmap">Roadmap</a>
+<button aria-label="Alternar tema" class="tgl" id="themeToggle" title="Alternar tema">🌙</button>
+<a class="btn" href="https://github.com/inematds/jurisflow" rel="noopener" target="_blank">GitHub</a>
+</div>
 </div></nav>
-
 <header class="hero" id="top">
-  <div class="glow"></div>
-  <div class="wrap">
-    <div>
-      <span class="chip">ERP/CRM jurídico · MVP funcional</span>
-      <h1>O escritório inteiro numa <span class="amb">tela só</span>.</h1>
-      <p class="lead">Clientes, processos, prazos, audiências, tarefas, financeiro e documentos — com um assistente jurídico de IA dentro do sistema.</p>
-      <div class="cta">
-        <a class="btn" href="#guia">Começar o guia</a>
-        <a class="btn ghost" href="https://github.com/inematds/jurisflow" target="_blank" rel="noopener">Ver no GitHub</a>
-      </div>
-    </div>
-    <figure><img src="assets/banner.jpg" alt="JurisFlow — gestão jurídica com IA: clientes, processos, agenda e prazos, financeiro, documentos e assistente IA"></figure>
-  </div>
+<div class="glow"></div>
+<div class="wrap">
+<div>
+<span class="chip">ERP/CRM jurídico · MVP funcional</span>
+<h1>O escritório inteiro numa <span class="amb">tela só</span>.</h1>
+<p class="lead">Clientes, processos, prazos, audiências, tarefas, financeiro e documentos — com um assistente jurídico de IA dentro do sistema.</p>
+<div class="cta">
+<a class="btn" href="#guia">Começar o guia</a>
+<a class="btn ghost" href="https://github.com/inematds/jurisflow" rel="noopener" target="_blank">Ver no GitHub</a>
+</div>
+</div>
+<figure><img alt="JurisFlow — gestão jurídica com IA: clientes, processos, agenda e prazos, financeiro, documentos e assistente IA" src="assets/banner.jpg"/></figure>
+</div>
 </header>
-
 <section id="oque"><div class="wrap">
-  <span class="chip">O que é</span>
-  <h2>Nove módulos, um banco de dados, zero planilha</h2>
-  <p class="sub">O JurisFlow é um sistema de gestão para escritório de advocacia. Não é um protótipo de interface: tem frontend, backend, banco MySQL, autenticação e um assistente de IA ligado a um LLM.</p>
-  <div class="grid g3">
-    <div class="card"><h3>📊 Painel que fecha a conta</h3><p>Clientes, processos ativos, prazos do período, audiências, receitas, despesas e saldo — calculados a partir dos lançamentos reais, não digitados à mão.</p></div>
-    <div class="card"><h3>⚖️ Processo com a ficha completa</h3><p>Número CNJ, tribunal, vara, comarca, área, fase, posição do cliente, parte contrária, valor da causa e o histórico de movimentações.</p></div>
-    <div class="card"><h3>🤖 IA dentro do fluxo</h3><p>Minuta de petição, análise de jurisprudência, cálculo de prazo, resumo de andamento, notificação extrajudicial e contrato de honorários.</p></div>
-  </div>
-
-  <div class="tblwrap">
-  <table class="tb">
-    <tr><th>Módulo</th><th>O que faz</th></tr>
-    <tr><td>Painel Geral</td><td class="mutd">Indicadores de clientes, processos ativos, prazos, audiências, receitas, despesas e saldo</td></tr>
-    <tr><td>Clientes</td><td class="mutd">Cadastro PF/PJ, CPF/CNPJ, contatos, endereço, profissão, estado civil, observações e status</td></tr>
-    <tr><td>Processos</td><td class="mutd">Número CNJ, tribunal, vara, comarca, área jurídica, fase, parte contrária, valor da causa e status</td></tr>
-    <tr><td>Andamentos</td><td class="mutd">Movimentações dentro dos processos, com marcação das que são importantes</td></tr>
-    <tr><td>Atendimentos</td><td class="mutd">Triagem de novos clientes por WhatsApp, presencial, vídeo, telefone ou e-mail</td></tr>
-    <tr><td>Agenda &amp; Prazos</td><td class="mutd">Prazos fatais, audiências, reuniões, perícias e diligências</td></tr>
-    <tr><td>Tarefas</td><td class="mutd">Gestão interna: prioridade, responsável, prazo e status</td></tr>
-    <tr><td>Financeiro</td><td class="mutd">Receitas, despesas, honorários, custas, vencimentos, pagamentos e fluxo financeiro</td></tr>
-    <tr><td>Documentos</td><td class="mutd">Petições, contestações, recursos, procurações, contratos de honorários, acordos, notificações</td></tr>
-    <tr><td>Assistente IA</td><td class="mutd">Geração e análise de conteúdo jurídico via LLM, com foco em Direito Brasileiro</td></tr>
-  </table>
-  </div>
+<span class="chip">O que é</span>
+<h2>Nove módulos, um banco de dados, zero planilha</h2>
+<p class="sub">O JurisFlow é um sistema de gestão para escritório de advocacia. Não é um protótipo de interface: tem frontend, backend, banco MySQL, autenticação e um assistente de IA ligado a um LLM.</p>
+<div class="grid g3">
+<div class="card"><h3>📊 Painel que fecha a conta</h3><p>Clientes, processos ativos, prazos do período, audiências, receitas, despesas e saldo — calculados a partir dos lançamentos reais, não digitados à mão.</p></div>
+<div class="card"><h3>⚖️ Processo com a ficha completa</h3><p>Número CNJ, tribunal, vara, comarca, área, fase, posição do cliente, parte contrária, valor da causa e o histórico de movimentações.</p></div>
+<div class="card"><h3>🤖 IA dentro do fluxo</h3><p>Minuta de petição, análise de jurisprudência, cálculo de prazo, resumo de andamento, notificação extrajudicial e contrato de honorários.</p></div>
+</div>
+<div class="tblwrap">
+<table class="tb">
+<tr><th>Módulo</th><th>O que faz</th></tr>
+<tr><td>Painel Geral</td><td class="mutd">Indicadores de clientes, processos ativos, prazos, audiências, receitas, despesas e saldo</td></tr>
+<tr><td>Clientes</td><td class="mutd">Cadastro PF/PJ, CPF/CNPJ, contatos, endereço, profissão, estado civil, observações e status</td></tr>
+<tr><td>Processos</td><td class="mutd">Número CNJ, tribunal, vara, comarca, área jurídica, fase, parte contrária, valor da causa e status</td></tr>
+<tr><td>Andamentos</td><td class="mutd">Movimentações dentro dos processos, com marcação das que são importantes</td></tr>
+<tr><td>Atendimentos</td><td class="mutd">Triagem de novos clientes por WhatsApp, presencial, vídeo, telefone ou e-mail</td></tr>
+<tr><td>Agenda &amp; Prazos</td><td class="mutd">Prazos fatais, audiências, reuniões, perícias e diligências</td></tr>
+<tr><td>Tarefas</td><td class="mutd">Gestão interna: prioridade, responsável, prazo e status</td></tr>
+<tr><td>Financeiro</td><td class="mutd">Receitas, despesas, honorários, custas, vencimentos, pagamentos e fluxo financeiro</td></tr>
+<tr><td>Documentos</td><td class="mutd">Petições, contestações, recursos, procurações, contratos de honorários, acordos, notificações</td></tr>
+<tr><td>Assistente IA</td><td class="mutd">Geração e análise de conteúdo jurídico via LLM, com foco em Direito Brasileiro</td></tr>
+</table>
+</div>
 </div></section>
-
 <section id="fluxo"><div class="wrap">
-  <span class="chip">Como funciona</span>
-  <h2>Do primeiro contato ao honorário pago</h2>
-  <p class="sub">O caminho que um caso percorre dentro do sistema — cada etapa é um módulo, e todos compartilham o mesmo cliente e o mesmo processo.</p>
-  <div class="flow">
-    <span>Atendimento</span><span class="arr">→</span>
-    <span>Cliente</span><span class="arr">→</span>
-    <span>Processo</span><span class="arr">→</span>
-    <span>Andamentos</span><span class="arr">→</span>
-    <span>Prazos &amp; Audiências</span><span class="arr">→</span>
-    <span>Tarefas</span><span class="arr">→</span>
-    <span>Documentos</span><span class="arr">→</span>
-    <span>Financeiro</span>
-  </div>
-
-  <div class="grid g2" style="margin-top:30px">
-    <div class="card">
-      <h3>Fases do processo</h3>
-      <p>Cada processo caminha por uma sequência fixa, e o painel mostra quantos estão em cada ponto.</p>
-      <div class="flow" style="margin-top:14px">
-        <span>Inicial</span><span class="arr">→</span>
-        <span>Instrução</span><span class="arr">→</span>
-        <span>Decisão</span><span class="arr">→</span>
-        <span>Recurso</span><span class="arr">→</span>
-        <span>Execução</span><span class="arr">→</span>
-        <span>Arquivado</span>
-      </div>
-    </div>
-    <div class="card">
-      <h3>Situação do caso</h3>
-      <p>Independente da fase, o processo carrega um status de desfecho — usado nos filtros e nos indicadores.</p>
-      <div class="flow" style="margin-top:14px">
-        <span>Ativo</span><span>Suspenso</span><span>Em acordo</span>
-        <span>Ganho</span><span>Perdido</span><span>Arquivado</span>
-      </div>
-    </div>
-  </div>
-
-  <div class="grid g3" style="margin-top:26px">
-    <div class="card"><h3>🗄️ Modelo de dados</h3><p>Nove tabelas: <code>users</code>, <code>clients</code>, <code>consultations</code>, <code>lawsuits</code>, <code>lawsuit_movements</code>, <code>calendar_events</code>, <code>tasks</code>, <code>financial_transactions</code>, <code>legal_documents</code>.</p></div>
-    <div class="card"><h3>🔗 Tudo amarrado</h3><p>Um documento aponta para cliente + processo + advogado. Um lançamento financeiro aponta para o processo que o gerou. Nada fica solto.</p></div>
-    <div class="card"><h3>🎨 Claro e escuro</h3><p>Interface responsiva com tema claro/escuro, construída em React 19 com Radix UI e Tailwind.</p></div>
-  </div>
+<span class="chip">Como funciona</span>
+<h2>Do primeiro contato ao honorário pago</h2>
+<p class="sub">O caminho que um caso percorre dentro do sistema — cada etapa é um módulo, e todos compartilham o mesmo cliente e o mesmo processo.</p>
+<div class="flow">
+<span>Atendimento</span><span class="arr">→</span>
+<span>Cliente</span><span class="arr">→</span>
+<span>Processo</span><span class="arr">→</span>
+<span>Andamentos</span><span class="arr">→</span>
+<span>Prazos &amp; Audiências</span><span class="arr">→</span>
+<span>Tarefas</span><span class="arr">→</span>
+<span>Documentos</span><span class="arr">→</span>
+<span>Financeiro</span>
+</div>
+<div class="grid g2" style="margin-top:30px">
+<div class="card">
+<h3>Fases do processo</h3>
+<p>Cada processo caminha por uma sequência fixa, e o painel mostra quantos estão em cada ponto.</p>
+<div class="flow" style="margin-top:14px">
+<span>Inicial</span><span class="arr">→</span>
+<span>Instrução</span><span class="arr">→</span>
+<span>Decisão</span><span class="arr">→</span>
+<span>Recurso</span><span class="arr">→</span>
+<span>Execução</span><span class="arr">→</span>
+<span>Arquivado</span>
+</div>
+</div>
+<div class="card">
+<h3>Situação do caso</h3>
+<p>Independente da fase, o processo carrega um status de desfecho — usado nos filtros e nos indicadores.</p>
+<div class="flow" style="margin-top:14px">
+<span>Ativo</span><span>Suspenso</span><span>Em acordo</span>
+<span>Ganho</span><span>Perdido</span><span>Arquivado</span>
+</div>
+</div>
+</div>
+<div class="grid g3" style="margin-top:26px">
+<div class="card"><h3>🗄️ Modelo de dados</h3><p>Nove tabelas: <code>users</code>, <code>clients</code>, <code>consultations</code>, <code>lawsuits</code>, <code>lawsuit_movements</code>, <code>calendar_events</code>, <code>tasks</code>, <code>financial_transactions</code>, <code>legal_documents</code>.</p></div>
+<div class="card"><h3>🔗 Tudo amarrado</h3><p>Um documento aponta para cliente + processo + advogado. Um lançamento financeiro aponta para o processo que o gerou. Nada fica solto.</p></div>
+<div class="card"><h3>🎨 Claro e escuro</h3><p>Interface responsiva com tema claro/escuro, construída em React 19 com Radix UI e Tailwind.</p></div>
+</div>
 </div></section>
-
 <section id="pre"><div class="wrap">
-  <span class="chip">Pré-requisitos</span>
-  <h2>O que precisa estar no ar antes</h2>
-  <p class="sub">O JurisFlow é uma aplicação full-stack: roda um servidor Node e precisa de um MySQL. Não é um site estático.</p>
-  <div class="grid g3">
-    <div class="card"><h3>Node.js 20+ e pnpm</h3><p>O projeto usa pnpm (há um <code>pnpm-lock.yaml</code> versionado) e módulos ESM.</p><pre><span class="c"># confira as versões</span>
+<span class="chip">Pré-requisitos</span>
+<h2>O que precisa estar no ar antes</h2>
+<p class="sub">O JurisFlow é uma aplicação full-stack: roda um servidor Node e precisa de um MySQL. Não é um site estático.</p>
+<div class="grid g3">
+<div class="card"><h3>Node.js 20+ e pnpm</h3><p>O projeto usa pnpm (há um <code>pnpm-lock.yaml</code> versionado) e módulos ESM.</p><pre><span class="c"># confira as versões</span>
 <span class="k">node -v</span>
 <span class="k">pnpm -v</span></pre></div>
-    <div class="card"><h3>MySQL acessível</h3><p>Banco vazio já serve — as migrations do Drizzle criam as nove tabelas.</p><pre><span class="c"># crie o banco</span>
+<div class="card"><h3>MySQL acessível</h3><p>Banco vazio já serve — as migrations do Drizzle criam as nove tabelas.</p><pre><span class="c"># crie o banco</span>
 <span class="k">mysql -u root -p -e</span> <span class="s">"CREATE DATABASE jurisflow"</span></pre></div>
-    <div class="card"><h3>Chave de um LLM</h3><p>Só para o Assistente Jurídico. Os outros oito módulos funcionam sem ela.</p><pre><span class="c"># vai no .env</span>
+<div class="card"><h3>Chave de um LLM</h3><p>Só para o Assistente Jurídico. Os outros oito módulos funcionam sem ela.</p><pre><span class="c"># vai no .env</span>
 <span class="k">BUILT_IN_FORGE_API_URL=</span>
 <span class="k">BUILT_IN_FORGE_API_KEY=</span></pre></div>
-  </div>
+</div>
 </div></section>
-
 <section id="guia"><div class="wrap">
-  <span class="chip">Guia de uso · passo a passo</span>
-  <h2>Do clone ao sistema rodando</h2>
-  <p class="sub">Cinco passos. Ao final você tem o JurisFlow no navegador, já populado com dados de demonstração.</p>
-
-  <div class="step"><div class="b">1</div><div>
-    <h3>Clone o repositório</h3>
-    <p>O código inteiro — frontend, backend, migrations e testes — vive num repo só.</p>
+<span class="chip">Guia de uso · passo a passo</span>
+<h2>Do clone ao sistema rodando</h2>
+<p class="sub">Cinco passos. Ao final você tem o JurisFlow no navegador, já populado com dados de demonstração.</p>
+<div class="step"><div class="b">1</div><div>
+<h3>Clone o repositório</h3>
+<p>O código inteiro — frontend, backend, migrations e testes — vive num repo só.</p>
 <pre><span class="k">git clone https://github.com/inematds/jurisflow.git</span>
 <span class="k">cd jurisflow</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">2</div><div>
-    <h3>Instale as dependências</h3>
-    <p>Use pnpm: o lockfile é dele, e há um patch aplicado no <code>wouter</code> que o npm ignora.</p>
+</div></div>
+<div class="step"><div class="b">2</div><div>
+<h3>Instale as dependências</h3>
+<p>Use pnpm: o lockfile é dele, e há um patch aplicado no <code>wouter</code> que o npm ignora.</p>
 <pre><span class="k">pnpm install</span>  <span class="c"># instala front + back de uma vez</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">3</div><div>
-    <h3>Configure o ambiente</h3>
-    <p>Copie o exemplo e preencha. <code>DATABASE_URL</code> e <code>JWT_SECRET</code> são obrigatórios; as chaves do LLM só se você for usar o assistente.</p>
+</div></div>
+<div class="step"><div class="b">3</div><div>
+<h3>Configure o ambiente</h3>
+<p>Copie o exemplo e preencha. <code>DATABASE_URL</code> e <code>JWT_SECRET</code> são obrigatórios; as chaves do LLM só se você for usar o assistente.</p>
 <pre><span class="k">cp .env.example .env</span>
 
 <span class="c"># .env — o mínimo para subir</span>
 <span class="k">DATABASE_URL=</span><span class="s">mysql://usuario:senha@localhost:3306/jurisflow</span>
 <span class="k">JWT_SECRET=</span><span class="s">um-segredo-aleatorio-e-longo</span>
 <span class="k">PORT=</span><span class="s">3000</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">4</div><div>
-    <h3>Crie as tabelas</h3>
-    <p>O Drizzle gera as migrations a partir do schema e aplica no banco. É o mesmo comando nas duas etapas.</p>
-<pre><span class="k">pnpm db:push</span>  <span class="c"># drizzle-kit generate && drizzle-kit migrate</span></pre>
-  </div></div>
-
-  <div class="step"><div class="b">5</div><div>
-    <h3>Suba o servidor</h3>
-    <p>Um processo só serve a API e o frontend. Abra o endereço, faça login e clique em <strong>“Gerar Dados Exemplo”</strong> no menu para popular clientes, processos, audiências, tarefas, financeiro e documentos.</p>
+</div></div>
+<div class="step"><div class="b">4</div><div>
+<h3>Crie as tabelas</h3>
+<p>O Drizzle gera as migrations a partir do schema e aplica no banco. É o mesmo comando nas duas etapas.</p>
+<pre><span class="k">pnpm db:push</span>  <span class="c"># drizzle-kit generate &amp;&amp; drizzle-kit migrate</span></pre>
+</div></div>
+<div class="step"><div class="b">5</div><div>
+<h3>Suba o servidor</h3>
+<p>Um processo só serve a API e o frontend. Abra o endereço, faça login e clique em <strong>“Gerar Dados Exemplo”</strong> no menu para popular clientes, processos, audiências, tarefas, financeiro e documentos.</p>
 <pre><span class="k">pnpm dev</span>  <span class="c"># http://localhost:3000</span></pre>
-  </div></div>
-
-  <div class="grid g4" style="margin-top:34px">
-    <div class="card"><h3>Outros comandos</h3><p><code>pnpm build</code> — compila front e back<br><code>pnpm start</code> — roda a build de produção</p></div>
-    <div class="card"><h3>Qualidade</h3><p><code>pnpm check</code> — typecheck TypeScript<br><code>pnpm test</code> — suíte Vitest</p></div>
-    <div class="card"><h3>Formatação</h3><p><code>pnpm format</code> — Prettier em tudo, com as regras do repo.</p></div>
-    <div class="card"><h3>Demo comercial</h3><p>Banco vazio + “Gerar Dados Exemplo” = escritório fictício pronto para apresentar em minutos.</p></div>
-  </div>
+</div></div>
+<div class="grid g4" style="margin-top:34px">
+<div class="card"><h3>Outros comandos</h3><p><code>pnpm build</code> — compila front e back<br/><code>pnpm start</code> — roda a build de produção</p></div>
+<div class="card"><h3>Qualidade</h3><p><code>pnpm check</code> — typecheck TypeScript<br/><code>pnpm test</code> — suíte Vitest</p></div>
+<div class="card"><h3>Formatação</h3><p><code>pnpm format</code> — Prettier em tudo, com as regras do repo.</p></div>
+<div class="card"><h3>Demo comercial</h3><p>Banco vazio + “Gerar Dados Exemplo” = escritório fictício pronto para apresentar em minutos.</p></div>
+</div>
 </div></section>
-
 <section id="exemplos"><div class="wrap">
-  <span class="chip">Assistente Jurídico IA</span>
-  <h2>Seis operações, todas em Direito Brasileiro</h2>
-  <p class="sub">O assistente é instruído a trabalhar com CPC, CPP, CLT, Constituição Federal, Código Civil, CDC e a jurisprudência do STF, STJ e TST. Você escolhe a operação e descreve o caso em português corrido.</p>
-
-  <div class="grid g3">
-    <div class="card"><h3>📝 Minuta de petição</h3><p>Descreve-se o caso; ele devolve a estrutura da peça com fundamentação e pedidos.</p></div>
-    <div class="card"><h3>🔍 Análise de jurisprudência</h3><p>Levanta o entendimento dos tribunais sobre o tema e como ele se aplica ao caso.</p></div>
-    <div class="card"><h3>📅 Cálculo de prazo</h3><p>Contagem a partir da intimação, considerando a regra processual aplicável.</p></div>
-    <div class="card"><h3>📄 Resumo de andamento</h3><p>Transforma o despacho ou a movimentação em linguagem clara para o cliente.</p></div>
-    <div class="card"><h3>📬 Notificação extrajudicial</h3><p>Redige a notificação a partir do fato e da pretensão informados.</p></div>
-    <div class="card"><h3>🤝 Contrato de honorários</h3><p>Monta o contrato com objeto, forma de cobrança e cláusulas usuais.</p></div>
-  </div>
-
-  <h3 style="margin-top:38px;font-size:1.1rem">Dois exemplos reais de entrada</h3>
-  <div class="grid g2" style="margin-top:14px">
-    <div class="card">
-      <p style="margin-bottom:10px"><strong>Minuta de petição</strong> — reclamação trabalhista</p>
+<span class="chip">Assistente Jurídico IA</span>
+<h2>Seis operações, todas em Direito Brasileiro</h2>
+<p class="sub">O assistente é instruído a trabalhar com CPC, CPP, CLT, Constituição Federal, Código Civil, CDC e a jurisprudência do STF, STJ e TST. Você escolhe a operação e descreve o caso em português corrido.</p>
+<div class="grid g3">
+<div class="card"><h3>📝 Minuta de petição</h3><p>Descreve-se o caso; ele devolve a estrutura da peça com fundamentação e pedidos.</p></div>
+<div class="card"><h3>🔍 Análise de jurisprudência</h3><p>Levanta o entendimento dos tribunais sobre o tema e como ele se aplica ao caso.</p></div>
+<div class="card"><h3>📅 Cálculo de prazo</h3><p>Contagem a partir da intimação, considerando a regra processual aplicável.</p></div>
+<div class="card"><h3>📄 Resumo de andamento</h3><p>Transforma o despacho ou a movimentação em linguagem clara para o cliente.</p></div>
+<div class="card"><h3>📬 Notificação extrajudicial</h3><p>Redige a notificação a partir do fato e da pretensão informados.</p></div>
+<div class="card"><h3>🤝 Contrato de honorários</h3><p>Monta o contrato com objeto, forma de cobrança e cláusulas usuais.</p></div>
+</div>
+<h3 style="margin-top:38px;font-size:1.1rem">Dois exemplos reais de entrada</h3>
+<div class="grid g2" style="margin-top:14px">
+<div class="card">
+<p style="margin-bottom:10px"><strong>Minuta de petição</strong> — reclamação trabalhista</p>
 <pre>Cliente trabalhou como analista de logística,
 fazia duas horas extras diárias e foi demitido
 sem receber aviso prévio.</pre>
-    </div>
-    <div class="card">
-      <p style="margin-bottom:10px"><strong>Análise de jurisprudência</strong> — consumidor</p>
+</div>
+<div class="card">
+<p style="margin-bottom:10px"><strong>Análise de jurisprudência</strong> — consumidor</p>
 <pre>Jurisprudência do STJ sobre dano moral
 em caso bancário — Tema 1061.</pre>
-    </div>
-  </div>
-
-  <div class="warn">
-    <strong>⚠️ Confira toda citação antes de usar.</strong>
-    <p>O assistente ainda <em>não</em> está ligado a uma base jurídica verificadora. Ele é instruído a citar artigos de lei e jurisprudência, mas um LLM sozinho pode produzir referência incorreta. Trate a saída como rascunho: toda lei e todo precedente citado precisa ser conferido na fonte antes de ir para os autos.</p>
-  </div>
+</div>
+</div>
+<div class="warn">
+<strong>⚠️ Confira toda citação antes de usar.</strong>
+<p>O assistente ainda <em>não</em> está ligado a uma base jurídica verificadora. Ele é instruído a citar artigos de lei e jurisprudência, mas um LLM sozinho pode produzir referência incorreta. Trate a saída como rascunho: toda lei e todo precedente citado precisa ser conferido na fonte antes de ir para os autos.</p>
+</div>
 </div></section>
-
 <section id="roadmap"><div class="wrap">
-  <span class="chip">Roadmap</span>
-  <h2>Onde está e para onde vai</h2>
-  <p class="sub">O JurisFlow hoje é um MVP funcional de ERP/CRM jurídico com assistente de IA. O que vem depois é integração com o mundo externo — e, no horizonte, delegar o trabalho repetitivo a agentes.</p>
-
-  <div class="phase"><div class="tag">Hoje</div><div class="d"><strong>ERP/CRM jurídico + assistente de IA</strong><span>Nove módulos funcionando sobre MySQL, autenticação OAuth + JWT, modo de demonstração com um clique e o assistente cobrindo seis operações.</span></div></div>
-
-  <div class="phase"><div class="tag">Próximo</div><div class="d"><strong>Fontes verificadas e documentos prontos</strong><span>Pesquisa + citação + validação das fontes jurídicas no assistente; geração direta de DOCX/PDF das peças; RAG sobre os documentos do próprio escritório.</span></div></div>
-
-  <div class="phase"><div class="tag">Integrações</div><div class="d"><strong>O sistema conversando com fora</strong><span>Captura automática de movimentações CNJ, publicações do Diário Oficial, WhatsApp, Gmail, Google Calendar, OCR de documentos, assinatura digital e cobrança por PIX/boleto.</span></div></div>
-
-  <div class="phase"><div class="tag">Escala</div><div class="d"><strong>Operação de escritório grande</strong><span>Permissões avançadas por equipe, auditoria detalhada, multiempresa/multiescritório e automação dos prazos processuais.</span></div></div>
-
-  <div class="phase"><div class="tag">Horizonte</div><div class="d"><strong>JurisFlow Agentic</strong><span>Deixar de ser só um software para escritório e virar o sistema operacional dele: agentes de triagem, jurídico, processos, prazos, documentos e financeiro trabalhando em cadeia — com o advogado como supervisor que aprova.</span></div></div>
+<span class="chip">Roadmap</span>
+<h2>Onde está e para onde vai</h2>
+<p class="sub">O JurisFlow hoje é um MVP funcional de ERP/CRM jurídico com assistente de IA. O que vem depois é integração com o mundo externo — e, no horizonte, delegar o trabalho repetitivo a agentes.</p>
+<div class="phase"><div class="tag">Hoje</div><div class="d"><strong>ERP/CRM jurídico + assistente de IA</strong><span>Nove módulos funcionando sobre MySQL, autenticação OAuth + JWT, modo de demonstração com um clique e o assistente cobrindo seis operações.</span></div></div>
+<div class="phase"><div class="tag">Próximo</div><div class="d"><strong>Fontes verificadas e documentos prontos</strong><span>Pesquisa + citação + validação das fontes jurídicas no assistente; geração direta de DOCX/PDF das peças; RAG sobre os documentos do próprio escritório.</span></div></div>
+<div class="phase"><div class="tag">Integrações</div><div class="d"><strong>O sistema conversando com fora</strong><span>Captura automática de movimentações CNJ, publicações do Diário Oficial, WhatsApp, Gmail, Google Calendar, OCR de documentos, assinatura digital e cobrança por PIX/boleto.</span></div></div>
+<div class="phase"><div class="tag">Escala</div><div class="d"><strong>Operação de escritório grande</strong><span>Permissões avançadas por equipe, auditoria detalhada, multiempresa/multiescritório e automação dos prazos processuais.</span></div></div>
+<div class="phase"><div class="tag">Horizonte</div><div class="d"><strong>JurisFlow Agentic</strong><span>Deixar de ser só um software para escritório e virar o sistema operacional dele: agentes de triagem, jurídico, processos, prazos, documentos e financeiro trabalhando em cadeia — com o advogado como supervisor que aprova.</span></div></div>
 </div></section>
-
 <footer>
-  <div class="wrap">
-    <div class="pill">React 19</div><div class="pill">TypeScript</div><div class="pill">Vite</div><div class="pill">Tailwind</div><div class="pill">Radix UI</div><div class="pill">TanStack Query</div><div class="pill">tRPC</div><div class="pill">Express</div><div class="pill">Zod</div><div class="pill">Drizzle ORM</div><div class="pill">MySQL</div><div class="pill">OAuth + JWT</div>
-    <p style="margin-top:18px">JurisFlow · MVP funcional, licença MIT ·
+<div class="wrap">
+<div class="pill">React 19</div><div class="pill">TypeScript</div><div class="pill">Vite</div><div class="pill">Tailwind</div><div class="pill">Radix UI</div><div class="pill">TanStack Query</div><div class="pill">tRPC</div><div class="pill">Express</div><div class="pill">Zod</div><div class="pill">Drizzle ORM</div><div class="pill">MySQL</div><div class="pill">OAuth + JWT</div>
+<p style="margin-top:18px">JurisFlow · MVP funcional, licença MIT ·
       <a href="https://github.com/inematds/jurisflow">inematds/jurisflow</a> ·
       <a href="https://inema.club">INEMA.CLUB</a></p>
-  </div>
+</div>
 </footer>
-
 <script>
   (function(){
     var KEY='jurisflow-theme';
